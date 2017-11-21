@@ -18,16 +18,16 @@
           </tr>
         </thead>
         {% for p in pensums %}
-        {% for cursos in p %}
-        <div class="row">
-          <tr>
-            <td>{{p.nombre}}</td>
-            <td>{{p.seccion}}</td>
-            <td>{{cursos.nombre}}</td>
 
-          </tr>
-        </div>
-        {% endfor %}
+          <div class="row">
+            <tr>
+              <td>{{p.nombre}}</td>
+              <td>{{p.seccion}}</td>
+              <td>{{p.cursos.nombre}}</td>
+
+            </tr>
+          </div>
+
         {% endfor %}
         <tbody>
 
