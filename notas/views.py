@@ -13,14 +13,15 @@ def nuevo(request):
     if request.method == "POST":
         formulario = GradoForm(request.POST)
         if formulario.is_valid():
-            grado = Grado.objects.create(grado=formulario.cleaned_data['nombre'],seccion=formulario.cleaned_data['seccion'])
+            grado = Grado.objects.create(nombre=formulario.cleaned_data['nombre'],seccion=formulario.cleaned_data['seccion'])
             for curso_id in request.POST.getlist('cursos'):
-                pensum = Pensum(grado_id=grado.id, curso_id = curso.id)
+                pensum = Pensum(grado_id=grado.id, curso_id = curso_id)
                 pensum.save()
-            messages.add_message(request, messages.SUCCESS, 'Creacion de pensum exitoso')
+            
     else:
         formulario = GradoForm()
     return render(request, 'notas/new.html', {'formulario': formulario})
 
 def ver(request):
-    return "no"
+    pensums = Grado.objects.filter()
+    return render(request, 'notas/show.html',{'pensums': pensums})

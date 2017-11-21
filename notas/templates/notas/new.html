@@ -1,13 +1,40 @@
-{% extends 'notas/base.html' %}
+{% load staticfiles %}
+    <html>
+        <head>
+            <title>Sistema Colegio</title>
 
-    {% block content %}
-    <div class="row">
-      <div class="col l8 offset-l2 white">
-        <h1>Nuevo Pensum</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
-            {{ formulario.as_p }}
-            <button type="submit" class="save btn btn-default">Guardar</button>
-        </form>
-      </div>
-    </div>
-    {% endblock %}
+            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        </head>
+        <body style="background-image: url('https://noguerin.files.wordpress.com/2015/01/fondo-escolar-hofmann-para-album-classic-pizarra_escolares-3-classic_1200px.jpg')">
+          <nav>
+            <div class="nav-wrapper blue">
+              <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">business_center</i>Sistema centro educativo</a>
+              <ul class="right hide-on-med-and-down">
+
+                <li><a href="{% url 'url_nuevo' %}" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Crear Pensum"><i class="material-icons">insert_invitation</i></a></li>
+                <li><a href="{% url 'url_ver' %}" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ver Pensum"><i class="material-icons">apps</i></a></li>
+
+              </ul>
+            </div>
+          </nav>
+            <div class="container">
+                <div class="row">
+                  <div class="row">
+                    <div class="col l8 offset-l2 white">
+                      <h1>Nuevo Pensum</h1>
+                      <form method="POST" class="post-form">{% csrf_token %}
+                          {{ formulario.as_p }}
+                          <button type="submit" class="save btn btn-default">Guardar</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+
+        </body>
+    </html>
