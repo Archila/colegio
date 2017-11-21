@@ -20,19 +20,20 @@ class Profesor (models.Model):
     def __str__(self):
         return self.nombre
 
-
-class Grado(models.Model):
-    nombre    = models.CharField(max_length=30)
-    seccion = models.CharField(max_length=4)
-
-    def __str__(self):
-        return self.nombre+" - "+self.seccion
-
 class Curso (models.Model):
     nombre    = models.CharField(max_length=30)
 
     def __str__(self):
         return self.nombre
+
+class Grado(models.Model):
+    nombre    = models.CharField(max_length=30)
+    seccion = models.CharField(max_length=4)
+    cursos   = models.ManyToManyField(Curso, through='Pensum')
+    def __str__(self):
+        return self.nombre+" - "+self.seccion
+
+
 
 class Nota (models.Model):
     total    = models.CharField(max_length=5)
@@ -48,6 +49,5 @@ class Nota (models.Model):
 
 class Pensum (models.Model):
 
-    fecha = models.DateTimeField(default=timezone.now)
     grado = models.ForeignKey(Grado, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
